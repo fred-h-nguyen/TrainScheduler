@@ -1,3 +1,7 @@
+ $(document).ready(function(){
+
+  alert('hello')
+ 
  // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyClvqW6iB8T3MIvtg6aZsnoYB1n5T1_1Yg",
@@ -11,4 +15,33 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  //variables needed for the sheet
+
+  var trainName = '';
+  var destination =  '';
+  var firstTime = '';
+  var frequency = 0;
   
+  
+  // on click get information from the form
+  $('#submit').on('click',function(event){
+    event.preventDefault();
+
+    console.log('clicked')
+
+    trainName = $('#trainName').val().trim();
+    destination = $('#destination').val().trim();
+    firstTime = $('#firstTime').val().trim();
+    frequency = $('#frequency').val().trim();
+
+    console.log(trainName);
+    console.log(destination);
+    console.log(firstTime);
+    console.log(frequency);
+
+
+
+
+  });
+
+ });
