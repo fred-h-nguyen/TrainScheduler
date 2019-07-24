@@ -20,8 +20,6 @@ $(document).ready(function () {
   var destination = '';
   var firstTime = '';
   var frequency = 0;
-  var nextTime = '';
-  var minutesAway = 0;
 
 
   // on click get information from the form
@@ -60,20 +58,19 @@ $(document).ready(function () {
     var tDiff = moment().diff(startTimeConverted, 'minutes');
 
     // remainder is saved to a var 
-    var freq = snapshot.val().frequency;
-    var remainder = tDiff % parseInt(freq);
+    var freq = parseInt(snapshot.val().frequency);
+    var remainder = tDiff % freq;
 
     console.log(remainder);
-
-    
-
-
-
-
-
     // frequency minus remainder is the time remaining
 
+    var timeTill = freq - remainder
+
+
     // add time remaining to current time and that is when next train is arrived
+
+    var nextTrain = moment().add(timeTill,'minutes').format('hh:mm A')
+
 
 
 
