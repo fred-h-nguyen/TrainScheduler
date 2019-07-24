@@ -66,17 +66,9 @@ $(document).ready(function () {
 
     var timeTill = freq - remainder
 
-
     // add time remaining to current time and that is when next train is arrived
 
     var nextTrain = moment().add(timeTill,'minutes').format('hh:mm A')
-
-
-
-
-
-
-
 
     // DOM manipulation
     var trainDOM = $('<tr>');
@@ -95,17 +87,13 @@ $(document).ready(function () {
     frequencyDOM.text(freq);
     frequencyDOM.appendTo(trainDOM);
 
-    nextDOM.text('');
+    nextDOM.text(nextTrain);
     nextDOM.appendTo(trainDOM);
 
-    minleftDOM.text('');
+    minleftDOM.text(timeTill);
     minleftDOM.appendTo(trainDOM);
 
 
     trainDOM.appendTo($('#schedule'))
-
-
-
-
   })
 });
