@@ -1,8 +1,6 @@
- $(document).ready(function(){
+$(document).ready(function () {
 
-  alert('hello')
- 
- // Your web app's Firebase configuration
+  // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyClvqW6iB8T3MIvtg6aZsnoYB1n5T1_1Yg",
     authDomain: "train-scheduler-4f8d3.firebaseapp.com",
@@ -15,33 +13,36 @@
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
 
+  var database = firebase.database()
+
   //variables needed for the sheet
 
   var trainName = '';
-  var destination =  '';
+  var destination = '';
   var firstTime = '';
   var frequency = 0;
-  
-  
-  // on click get information from the form
-  $('#submit').on('click',function(event){
-    event.preventDefault();
+  var nextTime = '';
+  var minutesAway = 0;
 
-    console.log('clicked')
+
+  // on click get information from the form
+  $('#submit').on('click', function (event) {
+    event.preventDefault();
 
     trainName = $('#trainName').val().trim();
     destination = $('#destination').val().trim();
     firstTime = $('#firstTime').val().trim();
     frequency = $('#frequency').val().trim();
 
-    console.log(trainName);
-    console.log(destination);
-    console.log(firstTime);
-    console.log(frequency);
+    database.ref().push({
+      train: trainName,
+      destination: destination,
+      startTime: firstTime,
+      frequency: frequency,
+    });
 
-
-
+    $('#trainName').val("")
 
   });
 
- });
+});
