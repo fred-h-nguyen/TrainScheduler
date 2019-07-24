@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
   // Your web app's Firebase configuration
   var firebaseConfig = {
     apiKey: "AIzaSyClvqW6iB8T3MIvtg6aZsnoYB1n5T1_1Yg",
@@ -47,40 +46,69 @@ $(document).ready(function () {
     $('#frequency').val('');
   });
 
-// pull data from firebase and DOM manipulation in tbody
-database.ref().on('child_added',function(snapshot){
-  var trainDOM = $('<tr>');
-  var nameDOM = $('<td>');
-  var destinDOM = $('<td>');
-  var nextDOM = $('<td>');
-  var frequencyDOM = $('<td>');
-  var minleftDOM = $('<td>');
+  // pull data from firebase
+  database.ref().on('child_added', function (snapshot) {
 
-  nameDOM.text(snapshot.val().train);
-  nameDOM.appendTo(trainDOM);
+    // Moment.JS shenanigans
 
-  destinDOM.text(snapshot.val().destination);
-  destinDOM.appendTo(trainDOM);
+    // get start time subtract 1 year 
+    var currentTime = moment().format('hh:mm');
+    var startTime = snapshot.val().startTime;
+    var startTimeConverted = moment(startTime, 'HH:mm').subtract(1, 'years');
 
-  frequencyDOM.text(snapshot.val().frequency);
-  frequencyDOM.appendTo(trainDOM);
-  
-  nextDOM.text('');
-  nextDOM.appendTo(trainDOM);
+    // get difference between start time and now
+    var tDiff = moment().diff(startTimeConverted, 'minutes');
 
-  minleftDOM.text('');
-  minleftDOM.appendTo(trainDOM);
+    // remainder is saved to a var 
+    var freq = snapshot.val().frequency;
+    var remainder = tDiff % parseInt(freq);
 
+    console.log(remainder);
 
-  trainDOM.appendTo($('#schedule'))
+    
 
 
 
 
-})
 
-//moment.js shennanigans to calculate next time of train arrival and how many minutes till next arrival
+    // frequency minus remainder is the time remaining
+
+    // add time remaining to current time and that is when next train is arrived
 
 
 
+
+
+
+
+    // DOM manipulation
+    var trainDOM = $('<tr>');
+    var nameDOM = $('<td>');
+    var destinDOM = $('<td>');
+    var nextDOM = $('<td>');
+    var frequencyDOM = $('<td>');
+    var minleftDOM = $('<td>');
+
+    nameDOM.text(snapshot.val().train);
+    nameDOM.appendTo(trainDOM);
+
+    destinDOM.text(snapshot.val().destination);
+    destinDOM.appendTo(trainDOM);
+
+    frequencyDOM.text(freq);
+    frequencyDOM.appendTo(trainDOM);
+
+    nextDOM.text('');
+    nextDOM.appendTo(trainDOM);
+
+    minleftDOM.text('');
+    minleftDOM.appendTo(trainDOM);
+
+
+    trainDOM.appendTo($('#schedule'))
+
+
+
+
+  })
 });
