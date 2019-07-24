@@ -20,12 +20,14 @@
     <script src="https://code.jquery.com/jquery-3.4.1.js"
         integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.1/firebase-app.js"></script>
+    <script src="tablefiller.js"></script>
 </head>
 
 <body>
     <div class="container">
-        <div class="jumbotron">
-                <h1 class="display-4" style="text-align: center">Anytime is Train Time!</h1>
+        <div class="jumbotron" style="text-align: center">
+                <h1 class="display-4">Anytime is Train Time!</h1>
+                <p class="lead">Choo Choo! Chee Chee!</p>
 
         </div>
         <div class="card">
@@ -70,7 +72,7 @@
                         <label for="frequency">Frequency(min)</label>
                         <input type="text" class="form-control" id="frequency">
                     </div>
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button class="btn btn-primary" type="submit" id="submit">Submit</button>
                 </form>
             </div>
 
