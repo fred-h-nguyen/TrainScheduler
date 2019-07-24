@@ -47,4 +47,11 @@ $(document).ready(function () {
     $('#frequency').val('');
   });
 
+// pull data from firebase and DOM manipulation in tbody
+
+
+//moment.js shennanigans to calculate next time of train arrival and how many minutes till next arrival
+
+
+
 });
