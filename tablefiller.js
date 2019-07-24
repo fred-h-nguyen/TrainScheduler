@@ -41,8 +41,10 @@ $(document).ready(function () {
       frequency: frequency,
     });
 
-    $('#trainName').val("")
-
+    $('#trainName').val('');
+    $('#destination').val('');
+    $('#firstTime').val('');
+    $('#frequency').val('');
   });
 
 });
